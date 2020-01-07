@@ -9,6 +9,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { IntroComponent } from './intro/intro.component';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
+import { UsersComponent } from './users/users.component';
+
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,10 +23,13 @@ import { FooterComponent } from './footer/footer.component';
     SidebarComponent,
     IntroComponent,
     ContentComponent,
-    FooterComponent
+    FooterComponent,
+    UsersComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

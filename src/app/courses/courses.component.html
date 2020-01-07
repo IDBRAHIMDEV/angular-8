@@ -1,2 +1,41 @@
-<h1>List of courses</h1>
-<p>courses works!</p>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+
+        <h1>List of courses</h1>
+        
+        <input 
+            
+            placeholder="New Course" 
+            class="form-control" 
+            type="text" 
+            [(ngModel)]="myCourse.label">
+
+            <button (click)="addCourse()" *ngIf="!editable" class="btn btn-block btn-primary">
+                <i class="fa fa-send"></i> Add Course
+            </button>
+
+            <button (click)="updateCourse()" *ngIf="editable" class="btn btn-block btn-warning">
+                <i class="fa fa-refresh"></i> Update Course
+            </button>
+
+        <ul class='list-group'>
+            <li 
+            class="list-group-item" 
+            *ngFor="let course of courses; index as i">
+                {{ course.label }}
+
+                <div class="text-right">
+                    <button (click)="editCourse(course)" class="btn btn-warning btn-sm mr-1">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                    <button (click)="deleteCourse(i)" class="btn btn-dark btn-sm">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+       
+    </div>
+</div>
