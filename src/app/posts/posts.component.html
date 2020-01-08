@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-6 my-4">
+        <h1>List of Posts</h1>
+    </div>
+    <div class="col-md-6 text-right mt-4">
+        <button 
+            [ngClass]="{
+                'btn-primary': !display,
+                'btn-danger': display
+            }"
+            (click)="toggleForm()" 
+            class="btn btn-sm">
+            <i 
+               [ngClass]="{
+                   'fa-angle-down': !display,
+                   'fa-angle-up': display
+               }" 
+               class="fa">
+            </i> 
+            {{ display ? 'Hide' : 'Show' }}
+        </button>
+    </div>
+</div>
+
+<div class="row" *ngIf="display">
+    <div class="col-md-6 mx-auto my-3">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input [(ngModel)]="myPost.title" id="title" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="body">Body</label>
+            <input [(ngModel)]="myPost.body" id="body" type="text" class="form-control">
+        </div>
+
+        
+        <button (click)="savePost()" class="btn btn-primary btn-block">
+            <i class="fa fa-send"></i> Add Post
+        </button>
+    </div>
+</div>
+
+<div class="row" >
+
+    <div *ngIf="posts.length; then listPosts else noPosts"></div>
+    
+    <ng-template #listPosts>
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Body</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let post of posts">
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.body }}</td>
+                        <td nowrap>
+                            <button class="btn btn-sm btn-warning mr-1">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button (click)="destroyPost(post.id)" class="btn btn-sm btn-danger">
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-template>
+
+    <ng-template #noPosts>
+        <div class="col-md-6 mx-auto">
+            <div class="alert alert-warning" role="alert">
+                <strong>Posts not Found !!!</strong>
+            </div>
+        </div>
+    </ng-template>
+</div>
