@@ -76,4 +76,8 @@ export class PostsComponent implements OnInit {
     this.display = !this.display
   }
 
+  info(ngModel) {
+    console.log(ngModel);
+  }
+
 }
